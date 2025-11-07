@@ -1,9 +1,11 @@
 <script setup>
- import { onMounted } from 'vue'
+ import { onMounted, computed } from 'vue'
  import { useUserStore } from '@/stores/useUserStore';
+ import { useRouter } from 'vue-router';
 
  
  const store = useUserStore()
+ const router = useRouter()
 
  onMounted(async() =>{
 
@@ -11,78 +13,100 @@
         await store.fetchFromAPI()
     }
  })
+
+ const users = computed(() => store.users)
+
+ function goTodo(user){
+
+    router.push(`/users/${user.id}/todos`)
+ }
 </script>
 
 
 <template>
-    <div class = "min-h-screen bg-slate-50 p-6">
-        <h1 class = "text-2xl font-bold mb-6"> All Users</h1>
+  <div class="min-h-screen bg-slate-50">
+    <h1 class="text-2xl font-semibold text-title mb-6">All Users</h1>
 
-        <div class = "grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    
+    <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      <button
+        v-for="user in users"
+        :key="user.id"
+        @click="goTodo(user)"
+        class="text-left bg-white rounded-2xl border border-border/70 shadow-sm hover:shadow-md transition hover:-translate-y-0.5 focus:outline-none"
+      >
+        <div class="p-5 flex gap-4">
+          
+          <div
+            class="w-16 h-16 rounded-full bg-subtitle/10 flex items-center justify-center overflow-hidden"
+          >
+            <img
+              v-if="user.url"
+              :src="user.url"
+              class="w-full h-full object-cover"
+              alt="avatar"
+            />
+            <span v-else class="text-lg font-semibold text-title">
+              {{ user.name?.[0] || 'U' }}
+            </span>
+          </div>
 
-            <router-link v-for="user in store.users" :key="user.id" :to="`/users/${user.id}/todos`" class="bg.white rounded-2x1 border border-state-100 p-4 flex gap-4 items-start hover:shadow-lg transition-shadow cursor-pointer">
-            
-            <div class="w-16 h-16 rounded-full bg-slate-200 overflow-hidden flex items-center justify-center">
-
-                <span class="text-xl font-semibold text-slate-600">
-                    {{ user.name?.[0] ?? 'U' }}
-
-                </span>
-
-            </div>
-
-            <div class ="flex-1">
-                <h2 class="text-lg font-semibold text-slate-800">
-                    {{ user.name }}
-
-                </h2>
-                
-                <p class="text-sm text-slate-500">
-                    {{ user.email }}
-
-                </p>
-
-                <p class="text-sm text-slate-500">
-                    {{ user.tel}}
-
-                </p>
-
-                <div class="mt-3 space-y-1 text-sm text-slate-600">
-                    <div class="flex gap-2 items-center">
-                        <span class="text-slate-400">📍</span>
-                        <span>{{ user.konum }}</span>
-
-                    </div>
-
-                    <div class="flex-gap-2 items-center">
-                        <span class="text-slate-400">🏢</span>
-                        <span>{{ user.company }}</span>
-
-                    </div>
-
-                    <div class="flex-gap-2 items-center">
-                        <span class="text-slate-400">🌐</span>
-                        <span>{{ user.web }}</span>
-
-
-                    </div>
-
-
-                </div>
-
-
-
-
-            </div>
-
-
-
-            </router-link>
-
+         
+          <div class="flex-1">
+            <p class="text-base font-semibold text-title">
+              {{ user.name }}
+            </p>
+            <p class="text-sm text-subtitle">
+              {{ user.email || 'email yok' }}
+            </p>
+            <p class="text-sm text-subtitle">
+              {{ user.tel || '' }}
+            </p>
+          </div>
         </div>
 
+       
+        <div class="px-5 pb-5 space-y-3 text-sm text-title/80">
+         
+          <div class="flex items-start gap-3">
+            <span class="mt-1 w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+              📍
+            </span>
+            <div>
+              <p class="text-xs font-semibold text-title mb-0.5">Location</p>
+              <p class="text-xs text-subtitle leading-snug">
+                {{ user.konum || 'Adres bilgisi yok' }}
+              </p>
+            </div>
+          </div>
 
+          
+          <div class="flex items-start gap-3">
+            <span class="mt-1 w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+              🏢
+            </span>
+            <div>
+              <p class="text-xs font-semibold text-title mb-0.5">Company</p>
+              <p class="text-xs text-subtitle leading-snug">
+                {{ user.company || 'Şirket bilgisi yok' }}
+              </p>
+            </div>
+          </div>
+
+          
+          <div class="flex items-start gap-3">
+            <span class="mt-1 w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+              🌐
+            </span>
+            <div>
+              <p class="text-xs font-semibold text-title mb-0.5">Website</p>
+              <p class="text-xs text-subtitle leading-snug">
+                {{ user.web || '—' }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </button>
     </div>
-
-
+  </div>
 </template>

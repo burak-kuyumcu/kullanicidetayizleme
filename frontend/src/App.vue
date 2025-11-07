@@ -72,9 +72,7 @@ onMounted(async () => {
           Albums
         </RouterLink>
 
-        <RouterLink v-if="isAlbum" :to="`/users/${selectedUserId}/gallery`" class="block px-4 py-2 rounded-lg hover:bg-slate-700 transition">
-           ← Albümlere dön
-        </RouterLink>
+       
 
       </nav>
     </aside>

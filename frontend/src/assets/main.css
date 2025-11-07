@@ -2,3 +2,10 @@
 @source "../../index.html";
 @source "../**/*.{vue,js,ts,jsx,tsx}";
 
+.text-primary { color: #4F359B; }
+.bg-primary { background-color: #4F359B; }
+
+.text-subtitle { color: #5C6672; }
+.text-title { color: #26303E; }
+
+.border-border { border-color: #D8D9DD; }
