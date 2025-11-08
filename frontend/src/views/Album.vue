@@ -2,6 +2,7 @@
 import { onMounted, ref, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useUserStore } from '@/stores/useUserStore';
+import { IconSquareRoundedArrowLeft } from '@tabler/icons-vue'
 
 
 const route = useRoute()
@@ -45,17 +46,18 @@ function goBack(){
 <template>
   <div class="space-y-6">
     
-    <div class="flex items-center gap-3">
+   <div class="flex items-center gap-3 mb-6">
       <button
         @click="goBack"
-        class="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 hover:bg-slate-100 transition"
+        class="flex items-center justify-center text-[#26303E] hover:text-[#4F359B] transition"
         aria-label="go gallery"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7" />
-        </svg>
+        
+        <IconSquareRoundedArrowLeft class="w-6 h-6" stroke-width="1.7" />
       </button>
-      <h1 class="text-xl font-semibold text-slate-800">Go Gallery</h1>
+      <h1 class="text-xl font-semibold text-[#26303E] leading-none">
+        Go Gallery
+      </h1>
     </div>
 
     

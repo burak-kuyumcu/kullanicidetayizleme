@@ -9,3 +9,30 @@
 .text-title { color: #26303E; }
 
 .border-border { border-color: #D8D9DD; }
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+
+html, body, #app {
+  height: 100%;
+}
+body {
+  font-family: 'Poppins', ui-sans-serif, system-ui, -apple-system, Segoe UI,
+    Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+
+:root{
+  --primary: #4F359B;
+  --subtitle: #5C6672;
+  --title: #26303E;
+  --border: #D8D9DD;
+}
+
+
+.t-checkbox{
+  width: 18px; height: 18px;
+  border-radius: 4px;
+  accent-color: var(--primary);
+}

@@ -2,6 +2,7 @@
 import { onMounted, ref, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/useUserStore'
+import { IconSquareRoundedArrowLeft } from '@tabler/icons-vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -60,65 +61,68 @@ function goBack() {
 </script>
 
 <template>
-  <div class="min-h-screen px-12 pt-10 font-sans bg-[#F7F9FB]">
-    
-    <div class="flex items-center gap-3 mb-10">
+  <div class="w-full">
+   
+    <div class="flex items-center gap-3 mb-6">
       <button
         @click="goBack"
-        class="w-10 h-10 flex items-center justify-center rounded-full border border-[#D8D9DD] hover:bg-slate-50 transition"
+        class="flex items-center justify-center text-[#26303E] hover:text-[#4F359B] transition"
+        aria-label="go back"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[#26303E]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7" />
-        </svg>
+        <IconSquareRoundedArrowLeft class="w-6 h-6" stroke-width="1.7" />
       </button>
-
-      <h1 class="text-xl font-semibold text-[#26303E]">Go Home</h1>
+      <h1 class="text-xl font-semibold text-[#26303E] leading-none">
+        Go Home
+      </h1>
     </div>
 
     
-    <div class="space-y-6">
-      <label
+    <div class="mt-20 pl-4 space-y-6">
+      <div
         v-for="todo in todos"
         :key="todo.id"
-        class="flex items-center gap-5 cursor-pointer select-none"
+        class="flex items-center gap-3"
       >
-        
-        <input
-          type="checkbox"
-          class="todo-checkbox"
-          :checked="todo.is_Done"
-          @change="toggleTodo(todo)"
-        />
+        <label class="flex items-center gap-3 cursor-pointer select-none">
+          
+          <input
+            type="checkbox"
+            :checked="todo.is_Done"
+            @change="toggleTodo(todo)"
+            class="sr-only peer"
+          />
 
-        
-        <span
-          class="text-[15px] leading-relaxed"
-          :class="todo.is_Done ? 'line-through text-[#5C6672]' : 'text-[#26303E]'"
-        >
-          {{ todo.title }}
-        </span>
-      </label>
+          
+          <span
+            class="w-5 h-5 rounded-md border border-[#9CA3AF] flex items-center justify-center
+                   transition peer-checked:bg-[#4F359B] peer-checked:border-[#4F359B]"
+          >
+            
+            <svg
+              v-if="todo.is_Done"
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-3 h-3 text-white"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-7.25 7.25a1 1 0 01-1.414 0l-3.5-3.5a1 1 0 111.414-1.414l2.793 2.793 6.543-6.543a1 1 0 011.414 0z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </span>
 
-      <p v-if="!todos.length" class="text-[#5C6672] text-sm italic">
-        Bu kullanıcıya ait görev bulunmuyor.
-      </p>
+          <span
+            :class="todo.is_Done ? 'text-[#5C6672] line-through' : 'text-[#26303E]'"
+            class="text-sm"
+          >
+            {{ todo.title }}
+          </span>
+        </label>
+      </div>
     </div>
   </div>
 </template>
 
-<style scoped>
-
-.todo-checkbox {
-  width: 22px;
-  height: 22px;
-  border: 2px solid #D8D9DD;
-  border-radius: 4px;
-  accent-color: #4F359B;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-.todo-checkbox:hover {
-  transform: scale(1.08);
-}
-</style>
 
