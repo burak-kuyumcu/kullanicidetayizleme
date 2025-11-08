@@ -2,6 +2,9 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from .models import TrackedUser, Task, GalleryAlbum, Photo, Post, Comment
 from .serializers import TrackedUserSerializer, TaskSerializer, GalleryAlbumSerializer, PhotoSerializer, PostSerializer, CommentSerializer
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from rest_framework import status
 
 class TrackedUserViewSet(viewsets.ModelViewSet):
     queryset = TrackedUser.objects.all().order_by('-created_at')
@@ -20,6 +23,16 @@ class TaskViewSet(viewsets.ModelViewSet):
             superq = superq.filter(kulanici_id = user_id)
            
         return  superq
+    
+    @action(detail=True, methods=["post"])
+    def toggle_done(self, request, pk=None):
+
+        task = self.get_object()
+        task.is_Done = not task.is_Done
+
+        task.save()
+        serializer = self.get_serializer(task)
+        return Response(serializer.data, status=status.HTTP_200_OK)
     
 
 class GalleryAlbumViewSet(viewsets.ModelViewSet):
