@@ -65,7 +65,7 @@ onMounted(async () => {
       </div>
 
       
-      <nav v-if="selectedUserId" class="mt-[15px] flex-1 space-y-1">
+      <nav v-if="selectedUserId" class="mt-15 flex-1 space-y-3">
         <RouterLink
           :to="`/users/${selectedUserId}/todos`"
           class="relative flex items-center gap-3 py-3 pl-6 pr-4 text-base rounded-r-full transition"
