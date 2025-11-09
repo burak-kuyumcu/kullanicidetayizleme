@@ -24,6 +24,7 @@ class Task(models.Model):
         return f"{self.user.name} - {self.title}"
 
 class GalleryAlbum(models.Model):
+    
     owner = models.ForeignKey('api.TrackedUser', related_name='albums', on_delete=models.CASCADE)
     name = models.CharField(max_length=150)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -40,6 +41,7 @@ class Photo(models.Model):
         return self.title or self.image_url
 
 class Post(models.Model):
+
     kulanici = models.ForeignKey('api.TrackedUser', related_name='posts', on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     content = models.TextField(blank=True)
@@ -49,6 +51,7 @@ class Post(models.Model):
         return self.title
 
 class Comment(models.Model):
+
     post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
     author_name = models.CharField(max_length=100)
     author_avatar = models.URLField(blank=True, null=True)

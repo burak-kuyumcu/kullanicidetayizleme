@@ -64,65 +64,50 @@ function goBack() {
   <div class="w-full">
    
     <div class="flex items-center gap-3 mb-6">
-      <button
-        @click="goBack"
-        class="flex items-center justify-center text-[#26303E] hover:text-[#4F359B] transition"
-        aria-label="go back"
-      >
+
+      <button @click="goBack" class="flex items-center justify-center text-[#26303E] hover:text-[#4F359B] transition" aria-label="go back">
         <IconSquareRoundedArrowLeft class="w-6 h-6" stroke-width="1.7" />
       </button>
+
       <h1 class="text-xl font-semibold text-[#26303E] leading-none">
         Go Home
       </h1>
+
     </div>
 
     
     <div class="mt-20 pl-4 space-y-6">
-      <div
-        v-for="todo in todos"
-        :key="todo.id"
-        class="flex items-center gap-3"
-      >
+
+      <div v-for="todo in todos" :key="todo.id" class="flex items-center gap-3">
+
         <label class="flex items-center gap-3 cursor-pointer select-none">
           
-          <input
-            type="checkbox"
-            :checked="todo.is_Done"
-            @change="toggleTodo(todo)"
-            class="sr-only peer"
-          />
+          <input type="checkbox" :checked="todo.is_Done" @change="toggleTodo(todo)" class="sr-only peer"/>
 
           
-          <span
-            class="w-5 h-5 rounded-md border border-[#9CA3AF] flex items-center justify-center
-                   transition peer-checked:bg-[#4F359B] peer-checked:border-[#4F359B]"
-          >
+          <span class="w-5 h-5 rounded-md border border-[#9CA3AF] flex items-center justify-center transition peer-checked:bg-[#4F359B] peer-checked:border-[#4F359B]">
             
-            <svg
-              v-if="todo.is_Done"
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-3 h-3 text-white"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-7.25 7.25a1 1 0 01-1.414 0l-3.5-3.5a1 1 0 111.414-1.414l2.793 2.793 6.543-6.543a1 1 0 011.414 0z"
-                clip-rule="evenodd"
-              />
+            <svg v-if="todo.is_Done" xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 text-white" viewBox="0 0 20 20" fill="currentColor">
+
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-7.25 7.25a1 1 0 01-1.414 0l-3.5-3.5a1 1 0 111.414-1.414l2.793 2.793 6.543-6.543a1 1 0 011.414 0z" clip-rule="evenodd"/>
             </svg>
+
           </span>
 
-          <span
-            :class="todo.is_Done ? 'text-[#5C6672] line-through' : 'text-[#26303E]'"
-            class="text-sm"
-          >
+          <span :class="todo.is_Done ? 'text-[#5C6672] line-through' : 'text-[#26303E]'" class="text-sm">
+
             {{ todo.title }}
+
           </span>
+
         </label>
+
       </div>
+
     </div>
+
   </div>
+  
 </template>
 
 

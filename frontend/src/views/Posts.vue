@@ -60,7 +60,7 @@ function goBack() {
 </script>
 
 <template>
-  <div class="min-h-screen bg-[#F5F6FA]">
+  <div class="min-h-screen bg-[#FFFFFF]">
     
    <div class="flex items-center gap-3 mb-6">
       <button
@@ -83,7 +83,8 @@ function goBack() {
       {{ post.title || 'Post Title' }}
     </h2>
     <p class="text-[#5C6672] leading-relaxed">
-      {{ post.content || 'Bu post için içerik girilmemiş.' }}
+      {{ post.content ? post.content.slice(0, 150) : 'Bu post için içerik girilmemiş.' }}
+      <span v-if="post.content && post.content.length > 150">...</span>
     </p>
   </div>
 

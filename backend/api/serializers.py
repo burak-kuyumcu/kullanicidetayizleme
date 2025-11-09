@@ -12,10 +12,12 @@ class TaskSerializer(serializers.ModelSerializer):
         model = Task
         fields = ['id', 'kulanici', 'title', 'is_Done', 'created_at']
 
+
 class PhotoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Photo
         fields = ['id', 'album', 'image_url', 'title']
+
 
 class GalleryAlbumSerializer(serializers.ModelSerializer):
     sample_photos = serializers.SerializerMethodField()
@@ -29,10 +31,12 @@ class GalleryAlbumSerializer(serializers.ModelSerializer):
         photos = obj.photos.all()[:3]
         return [p.image_url for p in photos]
 
+
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = ['id', 'kulanici', 'title', 'content', 'created_at']
+        
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
