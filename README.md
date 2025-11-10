@@ -1,9 +1,6 @@
 # Kullanıcı Detay İzleme Platformu
-
 Django (REST) + Vue.js ile yazılmıştır.
-
 Kullanıcıları listeler, seçili kullanıcıya ait paylaşımları, albümleri ve görevleri gösterir. 
-
 Backend dockerize edilmiştir.
 
 # 1. Teknolojiler
@@ -43,3 +40,6 @@ Backend dockerize edilmiştir.
     GET /api/posts/?user=<id> – kullanıcının postları
     GET /api/albums/?owner=<id> – kullanıcının albümleri
     GET /api/photos/?album=<id> – albüme ait fotoğraflar
+
+## Geliştiren
+* **Aydın Burak Kuyumcu** - [burak-kuyumcu](https://github.com/burak-kuyumcu)
