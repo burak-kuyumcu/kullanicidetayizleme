@@ -28,7 +28,7 @@ class GalleryAlbumSerializer(serializers.ModelSerializer):
 
     
     def get_sample_photos(self, obj):
-        photos = obj.photos.all()[:3]
+        photos = obj.photos.all()[:4]
         return [p.image_url for p in photos]
 
 
