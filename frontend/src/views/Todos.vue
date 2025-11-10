@@ -12,7 +12,7 @@ const todos = ref([])
 const userId = computed(() => Number(route.params.id))
 
 const currentUser = computed(() =>
-  store.users.find((u) => u.id === userId.value)
+  store.users.find((user) => user.id === userId.value)
 )
 
 onMounted(async () => {
@@ -51,7 +51,7 @@ async function deleteTodo(todo) {
     method: 'DELETE',
   })
   if (res.ok || res.status === 204) {
-    todos.value = todos.value.filter((t) => t.id !== todo.id)
+    todos.value = todos.value.filter((toDo) => toDo.id !== todo.id)
   }
 }
 

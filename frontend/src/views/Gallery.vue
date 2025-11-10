@@ -9,7 +9,7 @@ const router = useRouter()
 const store = useUserStore()
 const userId = computed(() => Number(route.params.id))
 const albums = ref([])
-const currentUser = computed(() => store.users.find((u) => u.id === userId.value))
+const currentUser = computed(() => store.users.find((user) => user.id === userId.value))
 
 onMounted(async () => {
 

@@ -15,7 +15,7 @@ const albumName = ref('Albüm')
 
 const currentUser = computed(() =>{
     
-    store.users.find((u) => u.id === userId.value)
+    store.users.find((user) => user.id === userId.value)
 })
 
 onMounted(async () => {

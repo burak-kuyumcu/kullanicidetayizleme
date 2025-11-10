@@ -19,7 +19,7 @@ const selectedUser = computed(() => {
 
   if (!selectedUserId.value) return null
 
-  return store.users.find((u) => u.id === selectedUserId.value) || null
+  return store.users.find((user) => user.id === selectedUserId.value) || null
 
 })
 
@@ -144,7 +144,7 @@ onMounted(async () => {
           <span class="font-medium">Users</span>
 
          </RouterLink>
-         
+
         </nav>
 
       
