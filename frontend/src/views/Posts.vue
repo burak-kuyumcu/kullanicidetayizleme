@@ -16,7 +16,7 @@ const selectedPost = ref(null)
 const comments = ref([])
 
 const currentUser = computed(() =>
-  store.users.find((u) => u.id === userId.value)
+  store.users.find((user) => user.id === userId.value)
 )
 
 onMounted(async () => {
@@ -63,40 +63,44 @@ function goBack() {
   <div class="min-h-screen bg-[#FFFFFF]">
     
    <div class="flex items-center gap-3 mb-6">
-      <button
-        @click="goBack"
-        class="flex items-center justify-center text-[#26303E] hover:text-[#4F359B] transition"
-        aria-label="go back"
-      >
+
+      <button @click="goBack" class="flex items-center justify-center text-[#26303E] hover:text-[#4F359B] transition" aria-label="go back">
+
         <IconSquareRoundedArrowLeft class="w-6 h-6" stroke-width="1.7" />
       </button>
+
       <h1 class="text-xl font-semibold text-[#26303E] leading-none">
         Go Home
       </h1>
+
     </div>
 
     
     <div class="rounded-2xl overflow-hidden">
+
   <div v-for="(post, idx) in posts" :key="post.id" class="py-8 px-6">
+
   <div class="max-w-3xl">
+
     <h2 class="text-lg font-semibold text-[#26303E] mb-2">
       {{ post.title || 'Post Title' }}
     </h2>
+
     <p class="text-[#5C6672] leading-relaxed">
       {{ post.content ? post.content.slice(0, 150) : 'Bu post için içerik girilmemiş.' }}
       <span v-if="post.content && post.content.length > 150">...</span>
     </p>
+
   </div>
 
  
   <div class="flex justify-end mt-4">
-    <button
-      @click="openPost(post)"
-      class="flex items-center gap-2 text-[15px] font-semibold text-[#4F359B] hover:text-[#362473] transition"
-    >
+    <button @click="openPost(post)" class="flex items-center gap-2 text-[15px] font-semibold text-[#4F359B] hover:text-[#362473] transition">
+
       <span>See More</span>
       <IconSquareRoundedArrowRight :size="22" stroke-width="2" />
     </button>
+
   </div>
 
   
@@ -137,48 +141,46 @@ function goBack() {
           </h3>
 
           <div v-if="comments.length" class="space-y-5">
-            <div
-              v-for="comment in comments"
-              :key="comment.id"
-              class="flex gap-4"
-            >
-              <img
-                v-if="comment.author_avatar"
-                :src="comment.author_avatar"
-                class="w-11 h-11 rounded-full object-cover"
-                alt=""
-              />
-              <div
-                v-else
-                class="w-11 h-11 rounded-full bg-[#E5E7EB] flex items-center justify-center text-sm text-[#5C6672]"
-              >
-                {{ comment.author_name?.[0] || 'U' }}
+
+            <div v-for="comment in comments" :key="comment.id" class="flex gap-4">
+
+              <img v-if="comment.author_avatar" :src="comment.author_avatar" class="w-11 h-11 rounded-full object-cover" alt=""/>
+
+              <div v-else class="w-11 h-11 rounded-full bg-[#E5E7EB] flex items-center justify-center text-sm text-[#5C6672]">
+                {{ comment.author_name?.[0] || ' ' }}
               </div>
 
               <div class="flex-1">
+
                 <p class="text-sm font-semibold text-[#26303E]">
                   {{ comment.author_name }}
                 </p>
+
                 <p class="text-sm text-[#5C6672] leading-relaxed">
                   {{ comment.text }}
                 </p>
+
               </div>
+
             </div>
+
           </div>
 
           <p v-else class="text-sm text-[#5C6672]">
             Bu post için yorum yok.
           </p>
+
         </div>
 
        
-        <button
-          @click="closeModal"
-          class="absolute top-4 right-4 text-[#5C6672] hover:text-[#4F359B] transition"
-        >
+        <button @click="closeModal" class="absolute top-4 right-4 text-[#5C6672] hover:text-[#4F359B] transition">
           <IconSquareRoundedX :size="22" stroke-width="1.7" />
         </button>
+
       </div>
+
     </div>
+
   </div>
+  
 </template>

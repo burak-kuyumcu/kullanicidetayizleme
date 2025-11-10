@@ -130,19 +130,22 @@ onMounted(async () => {
 
 
       
-      <nav v-else class="mt-8 flex-1">
-        <RouterLink to="/" class="flex items-center gap-3 py-3 pl-6 pr-4 text-base rounded-r-full bg-white text-[#4F359B]">
+        <nav v-else>
+         <RouterLink to="/" class="relative flex items-center gap-3 py-3 pl-6 pr-4 text-base rounded-r-full transition" :class="route.name === 'home' ? 'bg-white text-[#4F359B]' : 'text-[#6B6B6B]'">
 
-          <span class="w-8 h-8 flex items-center justify-center text-[#4F359B]">
+          <span class="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-8 rounded-r-full" :class="route.name === 'home' ? 'bg-[#4F359B]' : 'bg-transparent'"/>
+
+          <span class="w-8 h-8 flex items-center justify-center" :class="route.name === 'home' ? 'text-[#4F359B]' : 'text-[#6B6B6B]'">
 
             <IconUsers :size="20" stroke-width="1.7" />
 
           </span>
 
           <span class="font-medium">Users</span>
-        </RouterLink>
 
-      </nav>
+         </RouterLink>
+         
+        </nav>
 
       
       <div class="mt-auto border-t border-[#D8D9DD] bg-[#F3F4F6]">
