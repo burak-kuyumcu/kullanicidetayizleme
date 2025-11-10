@@ -17,12 +17,12 @@ class TaskViewSet(viewsets.ModelViewSet):
 
 
     def get_queryset(self):
-        superq = super(). get_queryset()
+        superQuery = super(). get_queryset()
         user_id = self.request.query_params.get('user')
         if(user_id):
-            superq = superq.filter(kulanici_id = user_id)
+            superQuery = superQuery.filter(kulanici_id = user_id)
            
-        return  superq
+        return  superQuery
     
     @action(detail=True, methods=["post"])
     def toggle_done(self, request, pk=None):
@@ -41,52 +41,54 @@ class GalleryAlbumViewSet(viewsets.ModelViewSet):
 
 
     def get_queryset(self):
-        querysuper = super().get_queryset()
+        superQuery = super().get_queryset()
         user_id = self.request.query_params.get('user')
 
         if(user_id):
-            querysuper = querysuper.filter(owner_id = user_id)
+            superQuery = superQuery.filter(owner_id = user_id)
         
-        return querysuper
+        return superQuery
     
-
 class PhotoViewSet(viewsets.ModelViewSet):
     queryset = Photo.objects.all()
     serializer_class = PhotoSerializer
 
     def get_queryset(self):
-        querysuper = super().get_queryset()
+        superQuery = super().get_queryset()
         album = self.request.query_params.get('album')
 
         if(album):
-            querysuper = querysuper.filter(album_id = album)
+            superQuery = superQuery.filter(album_id = album)
 
-        return querysuper
+        return superQuery
+
+
 
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all().order_by('created_at')
     serializer_class = PostSerializer
 
     def get_queryset(self):
-        querysuper = super().get_queryset()
+        superQuery = super().get_queryset()
         user_id = self.request.query_params.get('user')
         if(user_id):
-            querysuper = querysuper.filter(kulanici_id = user_id)
+            superQuery = superQuery.filter(kulanici_id = user_id)
         
-        return querysuper
+        return superQuery
+
 
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all().order_by('created_at')
     serializer_class = CommentSerializer
 
     def get_queryset(self):
-        querySuper = super().get_queryset()
+        superQuery = super().get_queryset()
         post_id = self.request.query_params.get('post')
 
         if(post_id):
-            querySuper = querySuper.filter(post_id = post_id)
+            superQuery = superQuery.filter(post_id = post_id)
         
-        return querySuper
+        return superQuery
 
       
           
