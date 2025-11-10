@@ -9,6 +9,9 @@ class TrackedUser(models.Model):
     web = models.CharField(max_length=255, blank=True, null=True)
     url = models.URLField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
     
 
     def __str__(self):
@@ -20,6 +23,9 @@ class Task(models.Model):
     is_Done = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ['-created_at']
+
     def __str__(self):
         return f"{self.user.name} - {self.title}"
 
@@ -29,6 +35,9 @@ class GalleryAlbum(models.Model):
     name = models.CharField(max_length=150)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ['-created_at']
+
     def __str__(self):
         return f"{self.owner.name} - {self.name}"
 
@@ -36,6 +45,9 @@ class Photo(models.Model):
     album = models.ForeignKey(GalleryAlbum, related_name='photos', on_delete=models.CASCADE)
     image_url = models.URLField()
     title = models.CharField(max_length=150, blank=True)
+
+    class Meta:
+        ordering = ['id']
 
     def __str__(self):
         return self.title or self.image_url
@@ -47,6 +59,10 @@ class Post(models.Model):
     content = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+
+    class Meta:
+        ordering = ['-created_at']
+
     def __str__(self):
         return self.title
 
@@ -57,6 +73,9 @@ class Comment(models.Model):
     author_avatar = models.URLField(blank=True, null=True)
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
 
     def __str__(self):
         return f"{self.author_name} - {self.post.title}"

@@ -35,6 +35,7 @@ class TaskViewSet(viewsets.ModelViewSet):
         return Response(serializer.data, status=status.HTTP_200_OK)
     
 
+
 class GalleryAlbumViewSet(viewsets.ModelViewSet):
     queryset = GalleryAlbum.objects.all().order_by('created_at')
     serializer_class = GalleryAlbumSerializer
@@ -49,6 +50,8 @@ class GalleryAlbumViewSet(viewsets.ModelViewSet):
         
         return superQuery
     
+
+
 class PhotoViewSet(viewsets.ModelViewSet):
     queryset = Photo.objects.all()
     serializer_class = PhotoSerializer
